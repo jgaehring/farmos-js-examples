@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+import farmOS from 'farmos';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    const host = '';
+    const username = 'farmos';
+    const password = 'farmos';
+    const farm = farmOS(host, username, password);
+    farm.authenticate().then(console.log);
+  }
   render() {
     return (
       <div className="App">
