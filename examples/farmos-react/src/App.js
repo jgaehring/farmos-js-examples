@@ -15,20 +15,41 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+        <form>
+          <fieldset>
+            <legend>To get started, enter your farmOS credentials</legend>
+            <div className="input-group">
+              <label>Host</label>
+              <br/>
+              <input
+                type='url'
+                value={host}
+                onChange={(e) => setHost(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label>Username</label>
+              <br/>
+              <input
+                type='text'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label>Password</label>
+              <br/>
+              <input
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+          </fieldset>
+        </form>
+      </header>
+    </div>
+  );
 }
 
 export default App;
