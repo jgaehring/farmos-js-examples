@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import farmOS from 'farmos';
 import logo from './logo.svg';
 import './App.css';
 
 const App = () => {
+  const [ host, setHost ] = useState('');
+  const [ username, setUsername ] = useState('farmos');
+  const [ password, setPassword ] = useState('farmos');
   useEffect(() => {
-    const host = '';
-    const username = 'farmos';
-    const password = 'farmos';
     const farm = farmOS(host, username, password);
     farm.authenticate().then(console.log);
-  })
+  }, [ host, username, password ]);
   return (
     <div className="App">
       <header className="App-header">
