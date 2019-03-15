@@ -7,10 +7,23 @@ const App = () => {
   const [ host, setHost ] = useState('');
   const [ username, setUsername ] = useState('farmos');
   const [ password, setPassword ] = useState('farmos');
+  const [ authStatus, setAuthStatus ] = useState(false);
+  const [ working, setWorking ] = useState(false);
+
   useEffect(() => {
-    const farm = farmOS(host, username, password);
-    farm.authenticate().then(console.log);
+    setWorking(true)
+    const farm = () => farmOS(host, username, password);
+    farm().authenticate().then(token => {
+      console.log(`Your token is: ${token}`);
+      setAuthStatus(true);
+      setWorking(false);
+    }).catch(err => {
+      console.error(err);
+      setAuthStatus(false)
+      setWorking(false);
+    });
   }, [ host, username, password ]);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -46,6 +59,15 @@ const App = () => {
               />
             </div>
           </fieldset>
+          <p id="authStatus">
+            {
+              (working)
+              ? "Loading..."
+              : (authStatus)
+              ? "Status: Authenticated!"
+              : "Status: Not Authenticated"
+            }
+          </p>
         </form>
       </header>
     </div>
