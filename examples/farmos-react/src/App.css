@@ -19,6 +19,12 @@
   color: white;
 }
 
+pre {
+  max-width: 80vmin;
+  max-height: 80vmin;
+  font-size: calc(6px + 1vmin) !important;
+}
+
 .App-link {
   color: #61dafb;
 }

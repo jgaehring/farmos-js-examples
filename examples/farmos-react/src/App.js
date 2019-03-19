@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Prism from 'prismjs'
 import farmOS from 'farmos';
 import logo from './logo.svg';
 import './App.css';
+import './prism.css';
 
 const App = () => {
   const [ host, setHost ] = useState('');
@@ -10,9 +12,14 @@ const App = () => {
   const [ authStatus, setAuthStatus ] = useState(false);
   const [ working, setWorking ] = useState(false);
 
-  const [ vocabulary, setVocabulary ] = useState('');
+  const [ termResponse, setTermResponse ] =  useState('Response will appear here.');
+  const [ vocabulary, setVocabulary ] = useState('farm_crops');
 
   const farm = () => farmOS(host, username, password);
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [ termResponse ])
 
   const onLogin = () => {
     setWorking(true)
@@ -28,7 +35,7 @@ const App = () => {
   };
 
   const getTerms = () => {
-    farm().term.get(vocabulary).then(console.log).catch(console.error)
+    farm().term.get(vocabulary).then(setTermResponse).catch(console.error)
   }
 
   return (
@@ -89,6 +96,11 @@ const App = () => {
             </div>
             <button type='button' onClick={getTerms}>Get Terms</button>
           </fieldset>
+          <pre>
+            <code className='language-javascript'>
+              {JSON.stringify(termResponse, null, 2)}
+            </code>
+          </pre>
         </form>
       </header>
     </div>

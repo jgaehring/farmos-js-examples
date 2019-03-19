@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "farmos": "0.0.1",
+    "prismjs": "^1.15.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8"
