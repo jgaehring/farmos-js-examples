@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import farmOS from 'farmos';
 import logo from './logo.svg';
 import './App.css';
@@ -10,7 +10,7 @@ const App = () => {
   const [ authStatus, setAuthStatus ] = useState(false);
   const [ working, setWorking ] = useState(false);
 
-  useEffect(() => {
+  const onLogin = () => {
     setWorking(true)
     const farm = () => farmOS(host, username, password);
     farm().authenticate().then(token => {
@@ -22,7 +22,7 @@ const App = () => {
       setAuthStatus(false)
       setWorking(false);
     });
-  }, [ host, username, password ]);
+  };
 
   return (
     <div className="App">
@@ -58,11 +58,12 @@ const App = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <button type='button' onClick={onLogin}>Login</button>
           </fieldset>
           <p id="authStatus">
             {
               (working)
-              ? "Loading..."
+              ? "Authenticating..."
               : (authStatus)
               ? "Status: Authenticated!"
               : "Status: Not Authenticated"
