@@ -10,9 +10,12 @@ const App = () => {
   const [ authStatus, setAuthStatus ] = useState(false);
   const [ working, setWorking ] = useState(false);
 
+  const [ vocabulary, setVocabulary ] = useState('');
+
+  const farm = () => farmOS(host, username, password);
+
   const onLogin = () => {
     setWorking(true)
-    const farm = () => farmOS(host, username, password);
     farm().authenticate().then(token => {
       console.log(`Your token is: ${token}`);
       setAuthStatus(true);
@@ -23,6 +26,10 @@ const App = () => {
       setWorking(false);
     });
   };
+
+  const getTerms = () => {
+    farm().term.get(vocabulary).then(console.log).catch(console.error)
+  }
 
   return (
     <div className="App">
@@ -69,6 +76,19 @@ const App = () => {
               : "Status: Not Authenticated"
             }
           </p>
+          <fieldset>
+            <legend>Taxonomy Terminologies</legend>
+            <div className="input-group">
+              <label>Vocabulary</label>
+              <br/>
+              <input
+                type='text'
+                value={vocabulary}
+                onChange={(e) => setVocabulary(e.target.value)}
+              />
+            </div>
+            <button type='button' onClick={getTerms}>Get Terms</button>
+          </fieldset>
         </form>
       </header>
     </div>
