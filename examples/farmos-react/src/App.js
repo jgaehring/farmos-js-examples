@@ -14,6 +14,7 @@ const App = () => {
 
   const [ termResponse, setTermResponse ] =  useState('Response will appear here.');
   const [ vocabulary, setVocabulary ] = useState('farm_crops');
+  const [ termParams, setTermParams ] = useState('VOCAB');
 
   const farm = () => farmOS(host, username, password);
 
@@ -85,6 +86,33 @@ const App = () => {
           </p>
           <fieldset>
             <legend>Taxonomy Terminologies</legend>
+            <div className='input-group'>
+              <label>Use Vocabular</label>
+              <input
+                type='radio'
+                name='term-params'
+                value='VOCAB'
+                onChange={(e) => setTermParams(e.target.value)}
+              />
+            </div>
+            <div className='input-group'>
+              <label>Use Filters</label>
+              <input
+                type='radio'
+                name='term-params'
+                value='FILTERS'
+                onChange={(e) => setTermParams(e.target.value)}
+              />
+            </div>
+            <div className='input-group'>
+              <label>Use No Params</label>
+              <input
+                type='radio'
+                name='term-params'
+                value='NONE'
+                onChange={(e) => setTermParams(e.target.value)}
+              />
+            </div>
             <div className="input-group">
               <label>Vocabulary</label>
               <br/>
