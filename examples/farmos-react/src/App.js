@@ -160,6 +160,10 @@ const App = () => {
               : "Status: Not Authenticated"
             }
           </p>
+        </form>
+      </header>
+      <main>
+        <form>
           <fieldset>
             <legend>Taxonomy Terminologies</legend>
             <div className='input-group'>
@@ -207,7 +211,7 @@ const App = () => {
             </code>
           </pre>
         </form>
-      </header>
+      </main>
     </div>
   );
 }
