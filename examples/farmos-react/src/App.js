@@ -25,10 +25,12 @@ const App = () => {
   }, [ termResponse ])
 
   useEffect(() => {
-    if (window.localStorage.getItem('token') !== '') {
+    if (window.localStorage.getItem('token') !== null) {
       setAuthStatus(true);
+    } else {
+      setAuthStatus(false);
     }
-  }, [])
+  }, [ working ])
 
   const onLogin = () => {
     setWorking(true)
@@ -42,6 +44,16 @@ const App = () => {
       setWorking(false);
     });
   };
+
+  const onLogout = () => {
+    setWorking(true);
+    farm().logout().then(res => {
+      window.localStorage.removeItem('token');
+      setAuthStatus(false);
+      setWorking(false);
+    })
+    .catch(() => { setWorking(false); });
+  }
 
   const getTerms = () => {
     if (termParams === 'VOCAB') {
@@ -137,6 +149,7 @@ const App = () => {
               />
             </div>
             <button type='button' onClick={onLogin}>Login</button>
+            <button type='button' onClick={onLogout}>Logout</button>
           </fieldset>
           <p id="authStatus">
             {
