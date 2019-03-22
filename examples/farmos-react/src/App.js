@@ -24,10 +24,16 @@ const App = () => {
     Prism.highlightAll();
   }, [ termResponse ])
 
+  useEffect(() => {
+    if (window.localStorage.getItem('token') !== '') {
+      setAuthStatus(true);
+    }
+  }, [])
+
   const onLogin = () => {
     setWorking(true)
     farm().authenticate().then(token => {
-      console.log(`Your token is: ${token}`);
+      window.localStorage.setItem('token', token);
       setAuthStatus(true);
       setWorking(false);
     }).catch(err => {
