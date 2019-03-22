@@ -144,7 +144,7 @@ const App = () => {
           <fieldset>
             <legend>Taxonomy Terminologies</legend>
             <div className='input-group'>
-              <label>Use Vocabular</label>
+              <label>Use Vocabulary</label>
               <input
                 type='radio'
                 name='term-params'
