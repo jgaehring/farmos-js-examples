@@ -4,7 +4,7 @@
   "description": "example of using farmOS.js in Node",
   "main": "index.js",
   "dependencies": {
-    "axios": "^0.18.0"
+    "farmos": "0.0.2"
   },
   "devDependencies": {},
   "scripts": {
