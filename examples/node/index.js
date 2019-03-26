@@ -8,6 +8,5 @@ farm = farmOS(host, username, password);
 
 farm.authenticate()
   .then(token => console.log('token: ', token))
-  .then(() => farm.term.get('farm_crops'))
-  .then(terms => console.log('terms: ', terms))
+  .then(() => farm.logout())
   .catch(console.error);
