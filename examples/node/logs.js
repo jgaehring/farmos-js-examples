@@ -1,12 +1,6 @@
-const farmOS = require('farmos');
+const { session, farm } = require('./oauth');
 
-const host = 'http://localhost:80';
-const username = 'farmos';
-const password = 'farmos';
-
-const farm = farmOS(host, username, password);
-
-farm.authenticate()
+session
   .then(token => console.log('token: ', token))
   .then(() => farm.log.get({
     type: [
@@ -19,5 +13,5 @@ farm.authenticate()
     // done: 0,
     // page: 1,
   }))
-  .then(logs => console.log('Number of logs: ', logs.length))
+  .then(r => console.log('Number of logs: ', r.list.length))
   .catch(console.error);

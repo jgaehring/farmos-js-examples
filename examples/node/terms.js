@@ -1,10 +1,4 @@
-const farmOS = require('farmos');
-
-const host = 'http://localhost:80';
-const username = 'farmos';
-const password = 'farmos';
-
-const farm = farmOS(host, username, password);
+const { session, farm } = require('./oauth');
 
 const sampleTerm = {
   tid: 3,
@@ -23,12 +17,11 @@ const sampleTerm = {
   weight: 5,
 }
 
-let token;
-
-farm.authenticate()
-  .then(_token => token = _token)
+session
   .then(() => farm.vocabulary('farm_crops'))
   .then(vocab => vocab.list[0].vid)
+  // Uncomment the following line if 'Cabbage' hasn't been created yet.
+  // .then(vid => farm.term.send(sampleTerm))
   .then(vid => farm.term.send({
     // name: "Cabbage",
     tid: '27',
@@ -37,7 +30,7 @@ farm.authenticate()
     vocabulary: {
       id: vid,
     },
-  }, token))
+  }))
   .then(() => farm.term.get('farm_crops'))
   .then(terms => console.log('terms: ', terms))
   .catch(console.error);
