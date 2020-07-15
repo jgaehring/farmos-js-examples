@@ -24,9 +24,9 @@ session
   // .then(vid => farm.term.send(sampleTerm))
   .then(vid => farm.term.send({
     // name: "Cabbage",
-    tid: '27',
+    tid: '3',
     // description: 'you know... cabbage',
-    maturity_days: 60,
+    maturity_days: 50,
     vocabulary: {
       id: vid,
     },
